@@ -29,7 +29,7 @@ public class BlocksManager : MonoBehaviour
 
     public void LoadLevel(int i)
     {
-        if (i > levels.Length && i <= 0) return;
+        if (i > levels.Length || i <= 0) return;
         currentLevelNum = i - 1;
         currentLevel = Instantiate(levels[currentLevelNum], origin);
         Block[] blocks = currentLevel.GetComponentsInChildren<Block>();
