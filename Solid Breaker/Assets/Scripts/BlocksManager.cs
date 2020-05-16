@@ -23,7 +23,6 @@ public class BlocksManager : MonoBehaviour
     {
         if (currentLevel == null) return;
 
-
     }
 
 
