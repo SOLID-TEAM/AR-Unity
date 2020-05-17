@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5659157341879376777}
   - component: {fileID: 3993323733510652052}
   m_Layer: 0
-  m_Name: BlockStatic
+  m_Name: BlockSilver
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -92,7 +92,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.254, y: 0.49275997, z: 0.254}
+  m_Size: {x: 0.5461, y: 1.059434, z: 0.5461}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3993323733510652052
 MonoBehaviour:

@@ -7,6 +7,7 @@ public class BallBehaviour : MonoBehaviour
 
     public float radius = 0.5f;
     public Vector3 movement = Vector3.zero;
+    public Vector3 direction = Vector3.zero;
     public float speed = 5.0f;
     [SerializeField] private float ray_length = 0.5f;
 
@@ -14,25 +15,29 @@ public class BallBehaviour : MonoBehaviour
     void Start()
     {
         movement = new Vector3(Random.Range(1, 3), 0.0f, Random.Range(1, 3));
+        movement = movement.normalized * speed * Time.deltaTime;
         Debug.Log(movement);
     }
 
-    // Update is called once per frame
     void Update()
     {
         HandleCollision();
-        transform.position += movement.normalized * speed * Time.deltaTime;
     }
 
     void HandleCollision()
     {
         // first shoot little ray
         RaycastHit hit;
-        if(Physics.SphereCast(transform.position, radius, movement.normalized, out hit, ray_length))
+        if (Physics.SphereCast(transform.position, radius, movement.normalized, out hit, speed * Time.deltaTime))
         {
             Debug.Log("Ball hit with: " + hit.collider.gameObject.name);
-
-            movement = Vector3.Reflect(movement, hit.normal);
+           Vector3 dNormal = hit.normal;
+           dNormal.z = 0;
+           movement = Vector3.Reflect(movement, dNormal).normalized;
+        }
+        else
+        {
+            transform.position += movement.normalized * speed * Time.deltaTime;
         }
     }
 
@@ -43,3 +48,4 @@ public class BallBehaviour : MonoBehaviour
         Gizmos.DrawLine(transform.position, transform.position + movement.normalized * ray_length);
     }
 }
+
