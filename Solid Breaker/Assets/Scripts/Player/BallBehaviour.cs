@@ -31,9 +31,9 @@ public class BallBehaviour : MonoBehaviour
         if (Physics.SphereCast(transform.position, radius, movement.normalized, out hit, speed * Time.deltaTime))
         {
             Debug.Log("Ball hit with: " + hit.collider.gameObject.name);
-           Vector3 dNormal = hit.normal;
-           dNormal.z = 0;
-           movement = Vector3.Reflect(movement, dNormal).normalized;
+            Vector3 dNormal = hit.normal;
+            dNormal.y = 0;
+            movement = Vector3.Reflect(movement, dNormal.normalized).normalized;
         }
         else
         {
