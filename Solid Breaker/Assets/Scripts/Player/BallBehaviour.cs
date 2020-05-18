@@ -13,10 +13,11 @@ public class BallBehaviour : MonoBehaviour
     //[SerializeField] private float ray_length = 0.5f;
     [SerializeField] private float defaultSpeed = 13.0f;
     [SerializeField] private float powerupSpeed = 7.0f;
-
+    BlocksManager blocksManager;
     // Start is called before the first frame update
     void Start()
     {
+        blocksManager = GetComponent<BlocksManager>();
         movement = new Vector3(Random.Range(-1.0f, 1.0f), 0.0f, 1.0f);
         speed = defaultSpeed;
     }
@@ -47,7 +48,16 @@ public class BallBehaviour : MonoBehaviour
                 Block block = hit.collider.gameObject.GetComponent<Block>();
                 block.BlockHit();
             }
-
+            else if (hit.collider.gameObject.CompareTag("Killer"))
+            { 
+                // Spawn dead particle
+                // Extract player life
+                // Reset player pos
+            }
+            else if (hit.collider.gameObject.CompareTag("Wall"))
+            {
+                // Spawn hit wall particle in hit point
+            }
         }
         else // TODO: if we ignore the collision using compare tag and this workaround, never moves until collisions is finished
         {
