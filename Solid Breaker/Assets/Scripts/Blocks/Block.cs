@@ -61,6 +61,12 @@ public class Block : MonoBehaviour
     {
         // Rest block manager
         // Spawn particle
+        GameObject particle = Instantiate(blocksManager.destroyParticle, transform.position, blocksManager.destroyParticle.transform.rotation);
+        ParticleSystem ps = particle.GetComponent<ParticleSystem>();
+        ParticleSystemRenderer psRender = particle.GetComponent<ParticleSystemRenderer>();
+        psRender.trailMaterial = meshRenderer.material;
+        ps.Play();
+        Destroy(particle, 3.1f);
         Destroy(gameObject);
     }
 

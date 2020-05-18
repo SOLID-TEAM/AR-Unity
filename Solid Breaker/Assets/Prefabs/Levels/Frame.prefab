@@ -127,13 +127,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   origin: {fileID: 5461938455808656563}
+  destroyParticle: {fileID: 7631098891182873503, guid: eb56b2f95bf2d864c96133ff9c194c07,
+    type: 3}
   initialLevel: 1
   levels:
   - {fileID: 4817490168666327645, guid: 4babc9044e9699c429d7c2e49de11022, type: 3}
   - {fileID: 4817490168666327645, guid: 9bb9710490df73246bf421b3a22a5369, type: 3}
   - {fileID: 4817490168666327645, guid: c57afbd36cde09d44b78940667efce1f, type: 3}
   - {fileID: 4817490168666327645, guid: fb1023311eaeeb94c902396975fe5cda, type: 3}
-  materialTouched: {fileID: 2100000, guid: 61b451a91ee438843835e688601e1149, type: 2}
 --- !u!1 &3408884982129275398
 GameObject:
   m_ObjectHideFlags: 0

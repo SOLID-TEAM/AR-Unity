@@ -9,9 +9,9 @@ public class BlocksManager : MonoBehaviour
     int currentLevelNum = 0;
     GameObject currentLevel;
     public Transform origin;
+    public GameObject destroyParticle;
     public int initialLevel = 1;
     public GameObject[] levels;
-    public Material materialTouched;
     void Start()
     {
         currentLevelNum = initialLevel;
