@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 2558489566379373424}
   - component: {fileID: 2558489566379373427}
   - component: {fileID: 2558489566379373429}
-  m_Layer: 0
-  m_Name: Capsule
+  m_Layer: 9
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -92,5 +92,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfd648f3afffa324e8d83a5d0c87fac5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  max_pos_limits: 5
   vaus_speed: 9
-  can_move: 1
+  active_powerup: 0
+  last_powerup: 0
+  lifes: 5
