@@ -39,7 +39,7 @@ public class PowerUp : MonoBehaviour
                 // get player controller script and active power up type
                 PlayerController pctrl = hit.collider.GetComponent<PlayerController>();
                 if (pctrl)
-                    pctrl.ActivePowerUp(type);
+                    pctrl.ActivatePowerUp(type);
 
                 Destroy(this.gameObject);
             }

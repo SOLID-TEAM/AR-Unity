@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 195978682865589525}
   m_Layer: 0
   m_Name: Ball
-  m_TagString: Untagged
+  m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -95,5 +95,7 @@ MonoBehaviour:
   radius: 0.5
   movement: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0, z: 0}
-  speed: 15
+  speed: 10
   ray_length: 0.5
+  defaultSpeed: 10
+  powerupSpeed: 5
