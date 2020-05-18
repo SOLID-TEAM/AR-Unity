@@ -30,8 +30,12 @@ public class Projectile : MonoBehaviour
                 continue;
 
             Debug.Log("Collision laser shot with: " + col.gameObject.name);
-            if(!col.gameObject.CompareTag("Wall")) // assumes only possible collisions is with one block
-                Destroy(col.gameObject); // TODO: remove this
+
+            if(col.gameObject.CompareTag("Block")) // assumes only possible collisions is with one block
+            {
+                col.gameObject.GetComponent<Block>().BlockHit();
+            }
+
             Destroy(this.gameObject);
             break; // only destroys first hitted block
         }

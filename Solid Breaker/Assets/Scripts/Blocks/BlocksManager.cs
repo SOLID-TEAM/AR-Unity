@@ -43,7 +43,7 @@ public class BlocksManager : MonoBehaviour
         currentBlockNum = 0;
 
         foreach ( Block block in blocks) {
-            if (!block.gameObject.isStatic)
+            if (!block.indestructible)
                 ++currentBlockNum;
         }
     }
