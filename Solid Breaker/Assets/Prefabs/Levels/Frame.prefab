@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 7334217410995248578}
   - component: {fileID: 6623499288971407577}
   - component: {fileID: 8767547831997729443}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -133,13 +133,7 @@ MonoBehaviour:
   - {fileID: 4817490168666327645, guid: 9bb9710490df73246bf421b3a22a5369, type: 3}
   - {fileID: 4817490168666327645, guid: c57afbd36cde09d44b78940667efce1f, type: 3}
   - {fileID: 4817490168666327645, guid: fb1023311eaeeb94c902396975fe5cda, type: 3}
-  materials:
-  - {fileID: 2100000, guid: d937436a71213ed4283cf12ab83ae4a6, type: 2}
-  - {fileID: 2100000, guid: ed739afdbc636ae44b445348fced490d, type: 2}
-  - {fileID: 2100000, guid: 804fff2de9257594992b03a63d4636c8, type: 2}
-  - {fileID: 2100000, guid: da8f54f2667fef34c91c5a3a0b0e8a81, type: 2}
-  - {fileID: 2100000, guid: 0ba2866e41046374dae88713c8753946, type: 2}
-  - {fileID: 2100000, guid: 2f4f4be10cfdd564582fa4acbd4af8bf, type: 2}
+  materialTouched: {fileID: 2100000, guid: 61b451a91ee438843835e688601e1149, type: 2}
 --- !u!1 &3408884982129275398
 GameObject:
   m_ObjectHideFlags: 0
@@ -541,6 +535,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2558489566379373431, guid: 69f6af0a3e010ef44bb0a6d7f3dd4bc0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69f6af0a3e010ef44bb0a6d7f3dd4bc0, type: 3}

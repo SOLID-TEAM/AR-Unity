@@ -8,6 +8,7 @@ TagManager:
   - Killer
   - PowerUp
   - Ball
+  - Block
   layers:
   - Default
   - TransparentFX
@@ -17,9 +18,9 @@ TagManager:
   - UI
   - 
   - 
+  - 
+  - Reflectable
   - Glow
-  - 
-  - 
   - 
   - 
   - 

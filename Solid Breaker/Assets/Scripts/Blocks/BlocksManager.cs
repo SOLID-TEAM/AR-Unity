@@ -11,7 +11,7 @@ public class BlocksManager : MonoBehaviour
     public Transform origin;
     public int initialLevel = 1;
     public GameObject[] levels;
-    public Material[] materials;
+    public Material materialTouched;
     void Start()
     {
         currentLevelNum = initialLevel;

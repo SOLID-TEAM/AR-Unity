@@ -24,28 +24,35 @@ public class BallBehaviour : MonoBehaviour
     void Update()
     {
         HandleCollision();
-        transform.position += movement.normalized * speed * Time.deltaTime;
+        //transform.position += movement.normalized * speed * Time.deltaTime;
     }
 
     void HandleCollision()
     {
         // first shoot little ray
+        int reflectLayer = 1 << LayerMask.NameToLayer("Reflectable");
         RaycastHit hit;
-        if (Physics.SphereCast(transform.position, radius, movement.normalized, out hit, speed * Time.deltaTime))
+        if (Physics.SphereCast(transform.position, radius, movement.normalized, out hit, speed * Time.deltaTime, reflectLayer))
         {
-            if (!hit.collider.gameObject.CompareTag("PowerUp") || !hit.collider.gameObject.CompareTag("Ball"))
-            {
+            //if (!hit.collider.gameObject.CompareTag("PowerUp") || !hit.collider.gameObject.CompareTag("Ball"))
+            //{
                 //Debug.Log("Ball hit with: " + hit.collider.gameObject.name);
                 Vector3 dNormal = hit.normal;
                 dNormal.y = 0.0f;
                 movement = Vector3.Reflect(movement, dNormal.normalized).normalized;
                 movement.y = 0.0f;
+            //}
+            if (hit.collider.gameObject.CompareTag("Block"))
+            {
+                Block block = hit.collider.gameObject.GetComponent<Block>();
+                block.BlockHit();
             }
+
         }
-        //else // TODO: if we ignore the collision using compare tag and this workaround, never moves until collisions is finished
-        //{
-        //    transform.position += movement.normalized * speed * Time.deltaTime;
-        //}
+        else // TODO: if we ignore the collision using compare tag and this workaround, never moves until collisions is finished
+        {
+            transform.position += movement.normalized * speed * Time.deltaTime;
+        }
     }
 
     public void SwitchPowerupSpeed(bool activate_powerup)
