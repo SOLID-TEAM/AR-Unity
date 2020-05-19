@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
         default_localScale = transform.localScale;
 
         // prepare first round
-        ResetPlayer();
+        Invoke("ResetPlayer", 1f);
     }
 
     // Update is called once per frame
@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
             current_ball.transform.position = new Vector3(this.transform.position.x, 0.0f, -5.7f);
             current_ball.transform.position += new Vector3(0.0f, 0.0f, 0.55f);
 
-            if (Input.GetKeyDown(KeyCode.Space) || Input.touchCount > 0)
+            if (Input.GetKeyDown(KeyCode.Space) || Input.touchCount > 0 && Input.GetTouch(0).phase.Equals(TouchPhase.Began))
             {
                 GameObject ball_go = GameObject.FindGameObjectWithTag("Ball");
                 BallBehaviour ball = ball_go.GetComponent<BallBehaviour>();
