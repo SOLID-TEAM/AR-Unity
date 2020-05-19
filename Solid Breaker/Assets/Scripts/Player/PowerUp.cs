@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum PowerUpType
 {
-    none, Laser, Enlarge, Slow, Disruption, ExtraLife, 
+    None = 0, Laser, Enlarge, Slow, Disruption, ExtraLife, Max 
 }
 public class PowerUp : MonoBehaviour
 {

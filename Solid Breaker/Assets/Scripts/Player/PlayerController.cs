@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        active_powerup = PowerUpType.none;
+        active_powerup = PowerUpType.None;
         default_localScale = transform.localScale;
     }
 

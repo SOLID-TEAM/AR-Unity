@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -61,6 +60,14 @@ public class Block : MonoBehaviour
         // Manager ------------------
         blocksManager.BlockDestroyed();
         gameManager.score += points;
+
+        // Random PowerUp
+        if (Random.Range(0, 10) == 0 && FindObjectOfType<PowerUp>() == null)
+        {
+            int randomType = (int)Random.Range((int)PowerUpType.None + 1, (int)PowerUpType.Max);
+            Object powerUp = Resources.Load(System.Enum.GetName(typeof(PowerUpType), (PowerUpType)randomType));
+            Instantiate(powerUp, new Vector3(0, 0.5f, 0), Quaternion.Euler(0.0f, 0.0f, 90.0f));
+        }
 
         // Destroy Particle -----------------------
         GameObject particle = Instantiate(blocksManager.destroyParticle, transform.position, blocksManager.destroyParticle.transform.rotation);

@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     public void StartRound()
     {
         blocksManager.LoadRound(currentRoundNum);
-        Invoke("CheckRoundState", 0.5f);
+        InvokeRepeating("CheckRoundState", 0f ,0.5f);
     }
 
     public void EndRound()
@@ -46,11 +46,8 @@ public class GameManager : MonoBehaviour
     {
         if (!blocksManager.HasBreakableBlocks())
         {
+            CancelInvoke("CheckRoundState");
             EndRound();
-        }
-        else
-        {
-            Invoke("CheckRoundState", 0.5f);
         }
     }
 
