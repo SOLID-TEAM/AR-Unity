@@ -14,17 +14,42 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PowerUpType last_powerup;
     public int lifes = 5;
     private Vector3 default_localScale;
+    [SerializeField] private bool started_round = false;
+    [SerializeField] private bool player_ready = false;
 
     // Start is called before the first frame update
     void Start()
     {
         active_powerup = PowerUpType.none;
         default_localScale = transform.localScale;
+
+        // prepare first round
+        ResetRound();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (player_ready && !started_round)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                GameObject ball_go = GameObject.FindGameObjectWithTag("Ball");
+                BallBehaviour ball = ball_go.GetComponent<BallBehaviour>();
+                if (ball)
+                {
+                    ball.movement = new Vector3(1.0f, 0.0f, 1.0f);
+                    started_round = true;
+                }
+            }
+
+            // update ball position until is shooted
+            GameObject current_ball = GameObject.FindGameObjectWithTag("Ball");
+            current_ball.transform.position = new Vector3(this.transform.position.x, 0.0f, -5.7f);
+            current_ball.transform.position += new Vector3(0.0f, 0.0f, 0.55f);
+        }
+        
+
         HandleMovement();
         HandlePowerUpActive();
         HandleGodKeys();
@@ -39,6 +64,33 @@ public class PlayerController : MonoBehaviour
                 Instantiate(Resources.Load(System.Enum.GetName(typeof(PowerUpType), n)), new Vector3(0, 0.5f, 0), Quaternion.Euler(0.0f, 0.0f, 90.0f));
             }
         }
+
+        if(Input.GetKeyDown(KeyCode.Return))
+        {
+            ResetRound();
+        }
+    }
+
+    void ResetRound()
+    {
+        // PLAYER
+        transform.position = transform.parent.position;
+        transform.position += new Vector3(0.0f, 0.0f, -5.7f);
+
+        // DELETE all balls, just in case or for debug purposes
+        GameObject[] allBalls = GameObject.FindGameObjectsWithTag("Ball");
+        foreach(GameObject ball in allBalls)
+            Destroy(ball);
+
+        // NEW BALL
+        GameObject new_ball = Instantiate(Resources.Load("Ball"), this.transform.parent) as GameObject; // child of frame
+        Vector3 offseted_pos = this.transform.position;
+        offseted_pos += new Vector3(0.0f, 0.0f, 0.55f);
+        new_ball.transform.position = offseted_pos;
+
+        // prepare player to shot first ball of the round
+        player_ready = true;
+        started_round = false;
     }
 
     void HandleMovement()
