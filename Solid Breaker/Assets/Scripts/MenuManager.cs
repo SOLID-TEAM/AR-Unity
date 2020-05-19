@@ -19,7 +19,7 @@ public class MenuManager : MonoBehaviour
                 {
                     if (hit.collider.gameObject == play)
                     {
-                        SceneManager.LoadScene("Game");
+                        SceneManager.LoadScene(1);
                     }
                     else if (hit.collider.gameObject == exit)
                     {
@@ -38,7 +38,7 @@ public class MenuManager : MonoBehaviour
             {
                 if (hit.collider.gameObject == play)
                 {
-                    SceneManager.LoadScene("Game");
+                    SceneManager.LoadScene(1);
                 }
                 else if (hit.collider.gameObject == exit)
                 {
