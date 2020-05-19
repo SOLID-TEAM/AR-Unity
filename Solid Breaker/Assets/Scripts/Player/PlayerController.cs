@@ -12,14 +12,15 @@ public class PlayerController : MonoBehaviour
     public float vaus_speed = 9.0f;
     [SerializeField] PowerUpType active_powerup;
     [SerializeField] private PowerUpType last_powerup;
-    public int lifes = 5;
     private Vector3 default_localScale;
     [SerializeField] private bool started_round = false;
     [SerializeField] private bool player_ready = false;
+    GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
         active_powerup = PowerUpType.None;
         default_localScale = transform.localScale;
 
@@ -197,7 +198,7 @@ public class PlayerController : MonoBehaviour
                 }
             case PowerUpType.ExtraLife:
                 {
-                    ++lifes;
+                    gameManager.AddLife();
                     break;
                 }
         }

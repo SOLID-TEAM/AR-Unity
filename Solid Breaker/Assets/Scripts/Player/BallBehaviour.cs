@@ -15,12 +15,12 @@ public class BallBehaviour : MonoBehaviour
     [SerializeField] private float defaultSpeed = 13.0f;
     [SerializeField] private float powerupSpeed = 7.0f;
     BlocksManager blocksManager;
-
+    GameManager gameManager;
     // Start is called before the first frame update
     void Start()
     {
-        blocksManager = GetComponent<BlocksManager>();
-        //movement = new Vector3(Random.Range(-1.0f, 1.0f), 0.0f, 1.0f);
+        gameManager = FindObjectOfType<GameManager>();
+        blocksManager = FindObjectOfType<BlocksManager>();
         speed = defaultSpeed;
     }
 
@@ -43,24 +43,27 @@ public class BallBehaviour : MonoBehaviour
         RaycastHit hit;
         if (Physics.SphereCast(transform.position, radius, movement.normalized, out hit, speed * Time.deltaTime, reflectLayer))
         {
-            //if (!hit.collider.gameObject.CompareTag("PowerUp") || !hit.collider.gameObject.CompareTag("Ball"))
-            //{
-                //Debug.Log("Ball hit with: " + hit.collider.gameObject.name);
-                Vector3 dNormal = hit.normal;
-                dNormal.y = 0.0f;
-                movement = Vector3.Reflect(movement, dNormal.normalized).normalized;
-                movement.y = 0.0f;
-            //}
+            Vector3 dNormal = hit.normal;
+            dNormal.y = 0.0f;
+            movement = Vector3.Reflect(movement, dNormal.normalized).normalized;
+            movement.y = 0.0f;
+
             if (hit.collider.gameObject.CompareTag("Block"))
             {
                 Block block = hit.collider.gameObject.GetComponent<Block>();
                 block.BlockHit();
             }
             else if (hit.collider.gameObject.CompareTag("Killer"))
-            { 
+            {
                 // Spawn dead particle
                 // Extract player life
                 // Reset player pos
+                if (FindObjectsOfType<BallBehaviour>().Length == 1)
+                {
+                    gameManager.ExtractLife();
+                }
+
+                Destroy(gameObject);
             }
             else if (hit.collider.gameObject.CompareTag("Wall"))
             {

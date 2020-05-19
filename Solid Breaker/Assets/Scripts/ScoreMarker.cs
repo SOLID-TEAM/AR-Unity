@@ -6,26 +6,32 @@ using UnityEngine;
 public class ScoreMarker : MonoBehaviour
 {
     // Start is called before the first frame update
+    public GameObject destroyParticle;
     public Mesh[] numMeshes;
     public GameObject[] numbers;
+    public GameObject[] lifes;
     GameManager gameManager;
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
-        InvokeRepeating("UpdateScoreText", 0f, 0.2f);
+        InvokeRepeating("UpdateScore", 0f, 0.2f);
     }
 
-    void UpdateScoreText()
+    void UpdateScore()
     {
         string textScore = gameManager.score.ToString();
-        int length = textScore.Length;
-
-        for (int i = 0; i < length; ++i )
+        for (int i = 0; i < textScore.Length; ++i )
         {
             char num = textScore[i];
-            GameObject obj = numbers[length - 1 - i];
+            GameObject obj = numbers[textScore.Length - 1 - i];
             obj.GetComponent<MeshFilter>().mesh = numMeshes[(int)char.GetNumericValue(num)];
         }
     }
-    // Update is called once per frame
+
+    public void DestroyLife(int life)
+    {
+        GameObject particle =Instantiate(destroyParticle, lifes[life].transform.position, Quaternion.identity);
+        Destroy(particle, 1.1f);
+        lifes[life].SetActive(false);
+    } 
 }
