@@ -2,26 +2,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.WSA;
 
 public class BlocksManager : MonoBehaviour
 {
-    MeshRenderer meshRenderer;
-    Color sceneColor;
-    int currentBlockNum = 0;
-    int currentLevelNum = 0;
-    GameObject currentLevel;
     public Transform origin;
     public Gradient gradient;
     public GameObject destroyParticle;
-    public int initialLevel = 1;
-    public GameObject[] levels;
+    public GameObject[] rounds;
+    
+    int currentBlockNum = 0;
+    GameObject currentRound;
+    GameManager gameManager;
+    MeshRenderer meshRenderer;
+    Color sceneColor;
+
     void Start()
     {
         meshRenderer = GetComponent<MeshRenderer>();
         meshRenderer.material.EnableKeyword("_EMISSION");
         sceneColor = Color.red;
-        currentLevelNum = initialLevel;
-        LoadLevel(currentLevelNum);
     }
 
     // Update is called once per frame
@@ -31,28 +31,39 @@ public class BlocksManager : MonoBehaviour
         acc += Time.deltaTime* 1.0f/6f;
         sceneColor = gradient.Evaluate(Mathf.PingPong(acc, 1.0f)) * 2.6f;
         meshRenderer.material.SetColor("_EmissionColor", sceneColor);
-        if (currentLevel == null) return;
+        if (currentRound == null) return;
     }
 
-    public void LoadLevel(int i)
+    public bool LoadRound(int i)
     {
-        if (i > levels.Length || i <= 0) return;
-        currentLevelNum = i - 1;
-        currentLevel = Instantiate(levels[currentLevelNum], origin);
-        Block[] blocks = currentLevel.GetComponentsInChildren<Block>();
+        if (i > rounds.Length || i <= 0) return false;
+        currentRound = Instantiate(rounds[i - 1], origin);
+        Block[] blocks = currentRound.GetComponentsInChildren<Block>();
         currentBlockNum = 0;
 
         foreach ( Block block in blocks) {
             if (!block.indestructible)
                 ++currentBlockNum;
         }
+
+        return true;
     }
 
-    public void UnLoadLevel()
+    public void UnloadRound()
     {
-        if (currentLevel == null) return;
-        Destroy(currentLevel);
-        currentLevel = null;
+        if (currentRound == null) return;
+        Destroy(currentRound);
+        currentRound = null;
         currentBlockNum = 0;
+    }
+
+    public bool HasBreakableBlocks()
+    {
+        return currentBlockNum > 0;
+    }
+
+    public void BlockDestroyed()
+    {
+        --currentBlockNum;
     }
 }

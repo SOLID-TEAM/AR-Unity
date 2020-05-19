@@ -27,7 +27,6 @@ public class PlayerController : MonoBehaviour
     {
         HandleMovement();
         HandlePowerUpActive();
-
         HandleGodKeys();
     }
 

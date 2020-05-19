@@ -14,7 +14,7 @@ public class Block : MonoBehaviour
     private Color originalColor;
     private MeshRenderer meshRenderer;
     private BlocksManager blocksManager;
-
+    private GameManager gameManager;
     public void BlockHit()
     {
         if (!indestructible && --hits  == 0)
@@ -59,8 +59,11 @@ public class Block : MonoBehaviour
 
     void BlockDestroyed()
     {
-        // Rest block manager
-        // Spawn particle
+        // Manager ------------------
+        blocksManager.BlockDestroyed();
+        gameManager.score += points;
+
+        // Destroy Particle -----------------------
         GameObject particle = Instantiate(blocksManager.destroyParticle, transform.position, blocksManager.destroyParticle.transform.rotation);
         ParticleSystem ps = particle.GetComponent<ParticleSystem>();
         ParticleSystemRenderer psRender = particle.GetComponent<ParticleSystemRenderer>();
@@ -72,6 +75,7 @@ public class Block : MonoBehaviour
 
     void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
         blocksManager = FindObjectOfType<BlocksManager>();
         meshRenderer = GetComponent<MeshRenderer>();
         meshRenderer.material.EnableKeyword("_EMISSION");

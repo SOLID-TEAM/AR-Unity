@@ -158,8 +158,8 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   destroyParticle: {fileID: 7631098891182873503, guid: eb56b2f95bf2d864c96133ff9c194c07,
     type: 3}
-  initialLevel: 1
-  levels:
+  d: 13
+  rounds:
   - {fileID: 4817490168666327645, guid: 4babc9044e9699c429d7c2e49de11022, type: 3}
   - {fileID: 4817490168666327645, guid: 9bb9710490df73246bf421b3a22a5369, type: 3}
   - {fileID: 4817490168666327645, guid: c57afbd36cde09d44b78940667efce1f, type: 3}
