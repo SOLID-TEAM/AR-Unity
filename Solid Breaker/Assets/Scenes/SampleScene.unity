@@ -121,16 +121,16 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!21 &188494431
+--- !u!21 &150948699
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 'cMaterial
+  m_Name: '3Material
 
-    -27716'
+    22994'
   m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
@@ -143,7 +143,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 50f5d88c13b04b0f9f359623f399641e, type: 3}
+        m_Texture: {fileID: 2800000, guid: 23975e7af899450082a18f37d45eb09a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats: []
@@ -391,6 +391,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50.000004, y: -3.8190002, z: 0}
+--- !u!21 &775091052
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: '2Material
+
+    23062'
+  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 6dbd0a8213ef4749981048060c24e956, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats: []
+    m_Colors:
+    - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
 --- !u!1 &917006612
 GameObject:
   m_ObjectHideFlags: 0
@@ -486,7 +514,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1201810279}
+  - {fileID: 150948699}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -550,14 +578,14 @@ MonoBehaviour:
   m_Script: {fileID: -1631628248, guid: 4bc5fd733b147194692297d23f623541, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mTrackableName: b
+  mTrackableName: 3
   mInitializedInEditor: 1
   mDataSetPath: Vuforia/Images.xml
   mPreserveChildSize: 0
-  mAspectRatio: 0.6999999
+  mAspectRatio: 1
   mImageTargetType: 0
-  mWidth: 2.4
-  mHeight: 1.68
+  mWidth: 5
+  mHeight: 5
   mRuntimeTexture: {fileID: 0}
 --- !u!4 &983025719
 Transform:
@@ -592,7 +620,7 @@ Mesh:
     vertexCount: 4
     localAABB:
       m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 1.2, y: 0, z: 0.8003075}
+      m_Extent: {x: 1, y: 0, z: 1}
   m_Shapes:
     vertices: []
     shapes: []
@@ -671,7 +699,7 @@ Mesh:
       format: 0
       dimension: 0
     m_DataSize: 128
-    _typelessdata: 000080bf00000000000080bf00000000ffff7f3f000000000000000000000000000080bf000000000000803f00000000ffff7f3f00000000000000000000803f0000803f00000000000080bf00000000ffff7f3f000000000000803f000000000000803f000000000000803f00000000ffff7f3f000000000000803f0000803f
+    _typelessdata: 000020c0000000000000e0bf000000000000803f000000000000000000000000000020c0000000000000e03f000000000000803f00000000000000000000803f00002040000000000000e0bf000000000000803f000000000000803f0000000000002040000000000000e03f000000000000803f000000000000803f0000803f
   m_CompressedMesh:
     m_Vertices:
       m_NumItems: 0
@@ -737,34 +765,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!21 &1201810279
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 'bMaterial
-
-    14410'
-  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 5
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 4e7a3335e27f496e9a438f229d71e449, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors:
-    - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
 --- !u!1 &1247091855
 GameObject:
   m_ObjectHideFlags: 0
@@ -1000,7 +1000,7 @@ Mesh:
     vertexCount: 4
     localAABB:
       m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 1.2, y: 0, z: 0.8003076}
+      m_Extent: {x: 0.1, y: 0, z: 0.1}
   m_Shapes:
     vertices: []
     shapes: []
@@ -1079,7 +1079,7 @@ Mesh:
       format: 0
       dimension: 0
     m_DataSize: 128
-    _typelessdata: 9a9999bf000000003d0a57bf000000000000803f0000000000000000000000009a9999bf000000003d0a573f000000000000803f00000000000000000000803f9a99993f000000003d0a57bf000000000000803f000000000000803f000000009a99993f000000003d0a573f000000000000803f000000000000803f0000803f
+    _typelessdata: 000020c000000000000020c0000000000000803f000000000000000000000000000020c00000000000002040000000000000803f00000000000000000000803f0000204000000000000020c0000000000000803f000000000000803f00000000000020400000000000002040000000000000803f000000000000803f0000803f
   m_CompressedMesh:
     m_Vertices:
       m_NumItems: 0
@@ -1165,7 +1165,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!33 &1845516147
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1192,7 +1192,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 188494431}
+  - {fileID: 775091052}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1220,7 +1220,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1845516146}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -1770992566, guid: 4bc5fd733b147194692297d23f623541, type: 3}
   m_Name: 
@@ -1232,7 +1232,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1845516146}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a917f0af64a6423093132dab321c15f, type: 3}
   m_Name: 
@@ -1251,19 +1251,19 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1845516146}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -1631628248, guid: 4bc5fd733b147194692297d23f623541, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mTrackableName: c
+  mTrackableName: 2
   mInitializedInEditor: 1
   mDataSetPath: Vuforia/Images.xml
   mPreserveChildSize: 0
-  mAspectRatio: 1
+  mAspectRatio: 0.7
   mImageTargetType: 0
-  mWidth: 2
-  mHeight: 2
+  mWidth: 5
+  mHeight: 3.5
   mRuntimeTexture: {fileID: 0}
 --- !u!4 &1845516152
 Transform:
@@ -1273,7 +1273,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1845516146}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.27, y: 0, z: 9.69}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 336480786}
