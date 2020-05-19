@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class GameManager : MonoBehaviour
@@ -38,7 +39,7 @@ public class GameManager : MonoBehaviour
 
         if (currentRoundNum > blocksManager.rounds.Length )
         {
-            // End Game Win
+            EndGame(true);
         }
         else
         {
@@ -47,6 +48,12 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void EndGame(bool isWinner)
+    {
+        text.SetActive(true);
+        text.GetComponent<MeshFilter>().mesh = (isWinner) ? youWinMesh : gameOverMesh;
+        Invoke("ReturnToMainMenu", 3.0f);
+    }
     public void CheckRoundState()
     {
         if (!blocksManager.HasBreakableBlocks())
@@ -72,7 +79,12 @@ public class GameManager : MonoBehaviour
 
         if (lifes == 0)
         {
-            // End Game Lose
+            EndGame(false);
         }
+    }
+
+    public void ReturnToMainMenu()
+    {
+        SceneManager.LoadScene("Main Menu");
     }
 }

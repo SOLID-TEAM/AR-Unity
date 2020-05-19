@@ -30,7 +30,8 @@ public class ScoreMarker : MonoBehaviour
 
     public void DestroyLife(int life)
     {
-        GameObject particle =Instantiate(destroyParticle, lifes[life].transform.position, Quaternion.identity);
+        if (life < 0 || life >= lifes.Length) return;
+        GameObject particle = Instantiate(destroyParticle, lifes[life].transform.position, Quaternion.identity);
         Destroy(particle, 1.1f);
         lifes[life].SetActive(false);
     } 
