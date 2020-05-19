@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
         default_localScale = transform.localScale;
 
         // prepare first round
-        ResetRound();
+        ResetPlayer();
     }
 
     // Update is called once per frame
@@ -33,7 +33,12 @@ public class PlayerController : MonoBehaviour
     {
         if (player_ready && !started_round)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            // update ball position until is shooted
+            GameObject current_ball = GameObject.FindGameObjectWithTag("Ball");
+            current_ball.transform.position = new Vector3(this.transform.position.x, 0.0f, -5.7f);
+            current_ball.transform.position += new Vector3(0.0f, 0.0f, 0.55f);
+
+            if (Input.GetKeyDown(KeyCode.Space) || Input.touchCount > 0)
             {
                 GameObject ball_go = GameObject.FindGameObjectWithTag("Ball");
                 BallBehaviour ball = ball_go.GetComponent<BallBehaviour>();
@@ -44,12 +49,8 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            // update ball position until is shooted
-            GameObject current_ball = GameObject.FindGameObjectWithTag("Ball");
-            current_ball.transform.position = new Vector3(this.transform.position.x, 0.0f, -5.7f);
-            current_ball.transform.position += new Vector3(0.0f, 0.0f, 0.55f);
         }
-        
+
 
         HandleMovement();
         HandlePowerUpActive();
@@ -66,13 +67,13 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if(Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Return))
         {
-            ResetRound();
+            ResetPlayer();
         }
     }
 
-    void ResetRound()
+    public void ResetPlayer()
     {
         // PLAYER
         transform.position = transform.parent.position;
@@ -80,7 +81,7 @@ public class PlayerController : MonoBehaviour
 
         // DELETE all balls, just in case or for debug purposes
         GameObject[] allBalls = GameObject.FindGameObjectsWithTag("Ball");
-        foreach(GameObject ball in allBalls)
+        foreach (GameObject ball in allBalls)
             Destroy(ball);
 
         // NEW BALL
@@ -97,6 +98,22 @@ public class PlayerController : MonoBehaviour
     void HandleMovement()
     {
         Vector3 new_pos = transform.position;
+
+        if (Input.touchCount > 0)
+        {
+            Vector2 touchPos = Input.GetTouch(0).position;
+            int halfScreen = (int)((float)Screen.width * 0.5f);
+
+            if (touchPos.x < halfScreen)
+            {
+                new_pos.x -= vaus_speed * Time.deltaTime;
+            }
+            else
+            {
+                new_pos.x += vaus_speed * Time.deltaTime;
+            }
+        }
+
 
         if (Input.GetKey(KeyCode.A))
         {
@@ -136,7 +153,7 @@ public class PlayerController : MonoBehaviour
     {
         GameObject[] all_balls = GameObject.FindGameObjectsWithTag("Ball");
 
-        foreach(GameObject go_ball in all_balls)
+        foreach (GameObject go_ball in all_balls)
         {
             BallBehaviour ball = go_ball.GetComponent<BallBehaviour>();
             if (ball)
@@ -180,13 +197,13 @@ public class PlayerController : MonoBehaviour
                         {
                             // TODO: check why this doesnt work if we instantiate directly as ballbehaviour
                             GameObject new_ball = Instantiate(Resources.Load("Ball"), any_current_ball.transform.position, Quaternion.identity) as GameObject;
-                            if(new_ball)
-                            { 
+                            if (new_ball)
+                            {
                                 BallBehaviour ball = new_ball.GetComponent<BallBehaviour>();
-                                if(ball)
+                                if (ball)
                                     ball.movement = new Vector3(Random.Range(-1.0f, 1.0f), 0.0f, Random.Range(-1.0f, 1.0f));
                             }
-                           
+
                         }
 
                     }

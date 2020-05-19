@@ -27,7 +27,13 @@ public class ScoreMarker : MonoBehaviour
             obj.GetComponent<MeshFilter>().mesh = numMeshes[(int)char.GetNumericValue(num)];
         }
     }
-
+    public void AddLife(int life)
+    {
+        if (life < 0 || life >= lifes.Length) return;
+        lifes[life].SetActive(true);
+        GameObject particle = Instantiate(destroyParticle, lifes[life].transform.position, Quaternion.identity);
+        Destroy(particle, 1.1f);
+    }
     public void DestroyLife(int life)
     {
         if (life < 0 || life >= lifes.Length) return;

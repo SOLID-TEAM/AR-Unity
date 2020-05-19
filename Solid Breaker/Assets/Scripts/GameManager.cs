@@ -15,8 +15,10 @@ public class GameManager : MonoBehaviour
     int currentRoundNum = 0;
     BlocksManager blocksManager;
     ScoreMarker scoreMarker;
+    PlayerController playerController;
     void Start()
     {
+        playerController = FindObjectOfType<PlayerController>();
         blocksManager = FindObjectOfType<BlocksManager>();
         scoreMarker = FindObjectOfType<ScoreMarker>();
         currentRoundNum = initRound;
@@ -71,11 +73,13 @@ public class GameManager : MonoBehaviour
     public void AddLife()
     {
         lifes = Mathf.Clamp(++lifes, 0, 5);
+        scoreMarker.AddLife(lifes);
     }
     public void ExtractLife()
     {
         lifes = Mathf.Clamp(--lifes, 0, 5);
         scoreMarker.DestroyLife(lifes);
+        playerController.ResetPlayer();
 
         if (lifes == 0)
         {
