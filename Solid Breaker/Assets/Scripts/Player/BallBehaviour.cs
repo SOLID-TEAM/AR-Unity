@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net;
 using UnityEngine;
+using UnityEngine.Experimental.AI;
 
 public class BallBehaviour : MonoBehaviour
 {
@@ -14,16 +15,23 @@ public class BallBehaviour : MonoBehaviour
     [SerializeField] private float defaultSpeed = 13.0f;
     [SerializeField] private float powerupSpeed = 7.0f;
     BlocksManager blocksManager;
+
     // Start is called before the first frame update
     void Start()
     {
         blocksManager = GetComponent<BlocksManager>();
-        movement = new Vector3(Random.Range(-1.0f, 1.0f), 0.0f, 1.0f);
+        //movement = new Vector3(Random.Range(-1.0f, 1.0f), 0.0f, 1.0f);
         speed = defaultSpeed;
     }
 
     void Update()
     {
+        //if(!started_round)
+        //{
+        //    if (Input.GetKeyDown(KeyCode.Space))
+        //        movement = new Vector3(1.0f, 0.0f, 1.0f);
+        //}
+
         HandleCollision();
         //transform.position += movement.normalized * speed * Time.deltaTime;
     }
