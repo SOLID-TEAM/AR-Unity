@@ -99,6 +99,10 @@ MonoBehaviour:
   speed: 10
   defaultSpeed: 10
   powerupSpeed: 5
+  m_audio: {fileID: 0}
+  burned_clip:
+  - {fileID: 8300000, guid: d300d10175d4e7840b0698bd7fc4b269, type: 3}
+  - {fileID: 8300000, guid: 1de193e29c8d0e5458d2c384df39db8e, type: 3}
 --- !u!96 &643816888262044667
 TrailRenderer:
   serializedVersion: 2

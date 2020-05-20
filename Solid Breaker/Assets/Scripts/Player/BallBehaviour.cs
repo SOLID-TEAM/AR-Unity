@@ -18,6 +18,9 @@ public class BallBehaviour : MonoBehaviour
     GameManager gameManager;
     MeshRenderer meshRenderer;
     TrailRenderer trailRenderer;
+    [Header("Audio SFX")]
+    [SerializeField] private AudioSource m_audio;
+    public AudioClip[] burned_clip;
     // Start is called before the first frame update
     void Start()
     {
@@ -59,13 +62,17 @@ public class BallBehaviour : MonoBehaviour
             }
             else if (hit.collider.gameObject.CompareTag("Killer"))
             {
-                // Spawn dead particle
+                // TODO: Spawn dead particle
                 // Extract player life
-                // Reset player pos
                 if (FindObjectsOfType<BallBehaviour>().Length == 1)
                 {
                     gameManager.ExtractLife();
                 }
+                // Reset player pos 
+
+                // play fire burned ball clip
+                if (m_audio)
+                    m_audio.PlayOneShot(burned_clip[Random.Range(0, burned_clip.Length)]);
 
                 Destroy(gameObject);
             }
