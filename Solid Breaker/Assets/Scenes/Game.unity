@@ -779,6 +779,7 @@ MonoBehaviour:
   lifes: 5
   score: 0
   initRound: 1
+  targetDetected: 0
 --- !u!4 &1247091857
 Transform:
   m_ObjectHideFlags: 0
@@ -838,7 +839,7 @@ MonoBehaviour:
   m_Script: {fileID: -1826476478, guid: 4bc5fd733b147194692297d23f623541, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mWorldCenterMode: 1
+  mWorldCenterMode: 0
   mWorldCenter: {fileID: 983025718}
 --- !u!81 &1318888588
 AudioListener:
