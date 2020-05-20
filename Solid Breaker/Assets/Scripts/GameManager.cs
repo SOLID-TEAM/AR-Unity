@@ -18,6 +18,11 @@ public class GameManager : MonoBehaviour
     ScoreMarker scoreMarker;
     PlayerController playerController;
     [HideInInspector]public bool targetDetected = false;
+    [Header("Audio SFX")]
+    [SerializeField] private AudioSource m_audio;
+    public AudioClip new_round_clip;
+    public AudioClip end_round_clip;
+
     void Start()
     {
         playerController = FindObjectOfType<PlayerController>();
@@ -25,6 +30,8 @@ public class GameManager : MonoBehaviour
         scoreMarker = FindObjectOfType<ScoreMarker>();
         currentRoundNum = initRound;
         StartRound();
+
+        m_audio = GetComponent<AudioSource>();
     }
     void Update()
     {
@@ -42,6 +49,10 @@ public class GameManager : MonoBehaviour
         playerController.ResetPlayer();
         blocksManager.LoadRound(currentRoundNum);
         InvokeRepeating("CheckRoundState", 0f ,0.5f);
+
+        // play new round sfx
+        if (m_audio)
+            m_audio.PlayOneShot(new_round_clip);
     }
 
     public void EndRound()
@@ -57,6 +68,9 @@ public class GameManager : MonoBehaviour
             Invoke("StartRound", 2.0f);
         }
 
+        // play new round sfx
+        if (m_audio)
+            m_audio.PlayOneShot(end_round_clip);
     }
 
     public void EndGame(bool isWinner)
