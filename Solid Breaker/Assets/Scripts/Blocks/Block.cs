@@ -62,7 +62,7 @@ public class Block : MonoBehaviour
         gameManager.score += points;
 
         // Random PowerUp
-        if (Random.Range(0, 8) == 0 && FindObjectOfType<PowerUp>() == null)
+        if (Random.Range(0, 5) == 0 && FindObjectOfType<PowerUp>() == null)
         {
             int randomType = (int)Random.Range((int)PowerUpType.None + 1, (int)PowerUpType.Max);
             Object powerUp = Resources.Load(System.Enum.GetName(typeof(PowerUpType), (PowerUpType)randomType));

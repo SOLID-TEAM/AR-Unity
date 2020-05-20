@@ -82,6 +82,7 @@ public class PlayerController : MonoBehaviour
 
     public void ResetPlayer()
     {
+        ActivatePowerUp(PowerUpType.None);
         // PLAYER
         transform.position = transform.parent.position;
         transform.position += new Vector3(0.0f, 0.0f, -5.7f);
@@ -230,7 +231,10 @@ public class PlayerController : MonoBehaviour
         }
 
         // play generic pickup clip
-        m_audio.PlayOneShot(generic_pickup_clip);
+        if (!type.Equals(PowerUpType.None))
+        {
+            m_audio.PlayOneShot(generic_pickup_clip);
+        }
     }
 
 }

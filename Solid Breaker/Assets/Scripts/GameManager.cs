@@ -81,8 +81,8 @@ public class GameManager : MonoBehaviour
 
     public void AddLife()
     {
-        lifes = Mathf.Clamp(++lifes, 0, 5);
         scoreMarker.AddLife(lifes);
+        lifes = Mathf.Clamp(++lifes, 0, 5);
     }
     public void ExtractLife()
     {
