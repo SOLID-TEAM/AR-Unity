@@ -13,20 +13,24 @@ public class PowerUp : MonoBehaviour
     public float fallSpeed = 3.0f;
     [SerializeField] private float radius = 0.25f; // capsule radius
     [SerializeField] private float width = 2.0f;
-
+    GameManager gameManager;
     // Start is called before the first frame update
     void Start()
     {
-        radius = GetComponent<CapsuleCollider>().radius;
+        gameManager = FindObjectOfType<GameManager>();
+;        radius = GetComponent<CapsuleCollider>().radius;
         width = GetComponent<CapsuleCollider>().height;
     }
 
     // Update is called once per frame
     void Update()
     {
-        HandleCollision();
-        transform.position += new Vector3(0.0f, 0.0f, -fallSpeed * Time.deltaTime);
-        transform.Rotate(0.0f, rotateAngleSpeed * Time.deltaTime, 0.0f);
+        if (gameManager.targetDetected)
+        {
+            HandleCollision();
+            transform.position += new Vector3(0.0f, 0.0f, -fallSpeed * Time.deltaTime);
+            transform.Rotate(0.0f, rotateAngleSpeed * Time.deltaTime, 0.0f);
+        }
     }
 
     void HandleCollision()

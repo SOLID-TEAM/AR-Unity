@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -16,13 +17,14 @@ public class GameManager : MonoBehaviour
     BlocksManager blocksManager;
     ScoreMarker scoreMarker;
     PlayerController playerController;
+    [HideInInspector]public bool targetDetected = false;
     void Start()
     {
         playerController = FindObjectOfType<PlayerController>();
         blocksManager = FindObjectOfType<BlocksManager>();
         scoreMarker = FindObjectOfType<ScoreMarker>();
         currentRoundNum = initRound;
-        Invoke("StartRound", 2.0f);
+        StartRound();
     }
     void Update()
     {
@@ -31,6 +33,13 @@ public class GameManager : MonoBehaviour
 
     public void StartRound()
     {
+        if (targetDetected == false)
+        {
+            Invoke("StartRound", 0.4f);
+            return;
+        }
+
+        playerController.ResetPlayer();
         blocksManager.LoadRound(currentRoundNum);
         InvokeRepeating("CheckRoundState", 0f ,0.5f);
     }
@@ -81,6 +90,9 @@ public class GameManager : MonoBehaviour
         scoreMarker.DestroyLife(lifes);
         playerController.ResetPlayer();
 
+        PowerUp powerUp = FindObjectOfType<PowerUp>();
+        if (powerUp != null) Destroy(powerUp.gameObject);
+
         if (lifes == 0)
         {
             EndGame(false);
@@ -94,11 +106,11 @@ public class GameManager : MonoBehaviour
 
     public void BeginDetection()
     {
-
+        targetDetected = true;
     }
 
     public void LostDetection()
     {
-
+        targetDetected = false;
     }
 }

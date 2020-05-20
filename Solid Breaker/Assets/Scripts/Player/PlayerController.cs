@@ -23,14 +23,13 @@ public class PlayerController : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
         active_powerup = PowerUpType.None;
         default_localScale = transform.localScale;
-
-        // prepare first round
-        Invoke("ResetPlayer", 1f);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!gameManager.targetDetected) return;
+
         if (player_ready && !started_round)
         {
             // update ball position until is shooted

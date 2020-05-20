@@ -16,24 +16,28 @@ public class BallBehaviour : MonoBehaviour
     [SerializeField] private float powerupSpeed = 7.0f;
     BlocksManager blocksManager;
     GameManager gameManager;
+    MeshRenderer meshRenderer;
+    TrailRenderer trailRenderer;
     // Start is called before the first frame update
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
         blocksManager = FindObjectOfType<BlocksManager>();
+        meshRenderer = GetComponent<MeshRenderer>();
+        meshRenderer.material.EnableKeyword("_EMISSION");
+        trailRenderer = GetComponent<TrailRenderer>();
+        trailRenderer.material.EnableKeyword("_EMISSION");
         speed = defaultSpeed;
     }
 
     void Update()
     {
-        //if(!started_round)
-        //{
-        //    if (Input.GetKeyDown(KeyCode.Space))
-        //        movement = new Vector3(1.0f, 0.0f, 1.0f);
-        //}
-
-        HandleCollision();
-        //transform.position += movement.normalized * speed * Time.deltaTime;
+        if (gameManager.targetDetected)
+        {
+            meshRenderer.material.SetColor("_EmissionColor", blocksManager.sceneColor); ;
+            trailRenderer.material.SetColor("_EmissionColor", blocksManager.sceneColor);
+            HandleCollision();
+        }
     }
 
     void HandleCollision()

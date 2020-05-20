@@ -62,11 +62,11 @@ public class Block : MonoBehaviour
         gameManager.score += points;
 
         // Random PowerUp
-        if (Random.Range(0, 10) == 0 && FindObjectOfType<PowerUp>() == null)
+        if (Random.Range(0, 8) == 0 && FindObjectOfType<PowerUp>() == null)
         {
             int randomType = (int)Random.Range((int)PowerUpType.None + 1, (int)PowerUpType.Max);
             Object powerUp = Resources.Load(System.Enum.GetName(typeof(PowerUpType), (PowerUpType)randomType));
-            Instantiate(powerUp, new Vector3(0, 0.5f, 0), Quaternion.Euler(0.0f, 0.0f, 90.0f));
+            Instantiate(powerUp, new Vector3(transform.position.x, 0.5f, transform.position.z), Quaternion.Euler(0.0f, 0.0f, 90.0f) );
         }
 
         // Destroy Particle -----------------------
