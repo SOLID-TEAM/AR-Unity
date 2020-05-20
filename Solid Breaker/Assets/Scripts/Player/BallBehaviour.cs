@@ -20,7 +20,7 @@ public class BallBehaviour : MonoBehaviour
     TrailRenderer trailRenderer;
     [Header("Audio SFX")]
     [SerializeField] private AudioSource m_audio;
-    //public AudioClip[] burned_clip;
+    public AudioClip bounce_clip;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +31,8 @@ public class BallBehaviour : MonoBehaviour
         trailRenderer = GetComponent<TrailRenderer>();
         trailRenderer.material.EnableKeyword("_EMISSION");
         speed = defaultSpeed;
+
+        m_audio = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -79,6 +81,10 @@ public class BallBehaviour : MonoBehaviour
             {
                 // Spawn hit wall particle in hit point
             }
+
+            // play bounce sfx
+            if (m_audio)
+                m_audio.PlayOneShot(bounce_clip);
         }
         else // TODO: if we ignore the collision using compare tag and this workaround, never moves until collisions is finished
         {
