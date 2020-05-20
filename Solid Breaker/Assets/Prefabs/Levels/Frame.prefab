@@ -337,6 +337,7 @@ MonoBehaviour:
   - {fileID: 4817490168666327645, guid: 9bb9710490df73246bf421b3a22a5369, type: 3}
   - {fileID: 4817490168666327645, guid: c57afbd36cde09d44b78940667efce1f, type: 3}
   - {fileID: 4817490168666327645, guid: fb1023311eaeeb94c902396975fe5cda, type: 3}
+  sceneColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &3408884982129275398
 GameObject:
   m_ObjectHideFlags: 0
@@ -636,6 +637,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2329031297130877928}
     m_Modifications:
+    - target: {fileID: 2558489566379373427, guid: 69f6af0a3e010ef44bb0a6d7f3dd4bc0,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8ace1e2393e99314aa3db7eaa3c7c51d, type: 2}
     - target: {fileID: 2558489566379373428, guid: 69f6af0a3e010ef44bb0a6d7f3dd4bc0,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -944,6 +944,9 @@ MonoBehaviour:
   score: 0
   initRound: 1
   targetDetected: 0
+  m_audio: {fileID: 0}
+  new_round_clip: {fileID: 0}
+  end_round_clip: {fileID: 0}
 --- !u!4 &1247091857
 Transform:
   m_ObjectHideFlags: 0
