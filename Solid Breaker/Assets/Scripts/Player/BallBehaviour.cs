@@ -20,7 +20,7 @@ public class BallBehaviour : MonoBehaviour
     TrailRenderer trailRenderer;
     [Header("Audio SFX")]
     [SerializeField] private AudioSource m_audio;
-    public AudioClip[] burned_clip;
+    //public AudioClip[] burned_clip;
     // Start is called before the first frame update
     void Start()
     {
@@ -68,11 +68,10 @@ public class BallBehaviour : MonoBehaviour
                 {
                     gameManager.ExtractLife();
                 }
-                // Reset player pos 
+                // Reset player pos
 
                 // play fire burned ball clip
-                if (m_audio)
-                    m_audio.PlayOneShot(burned_clip[Random.Range(0, burned_clip.Length)]);
+                Instantiate(Resources.Load("BallDestroyedClip"), transform.position, Quaternion.identity);
 
                 Destroy(gameObject);
             }
