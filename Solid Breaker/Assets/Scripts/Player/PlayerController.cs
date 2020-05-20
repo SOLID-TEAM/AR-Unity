@@ -82,7 +82,7 @@ public class PlayerController : MonoBehaviour
 
     public void ResetPlayer()
     {
-        ActivatePowerUp(PowerUpType.None);
+        
         // PLAYER
         transform.position = transform.parent.position;
         transform.position += new Vector3(0.0f, 0.0f, -5.7f);

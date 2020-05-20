@@ -88,6 +88,7 @@ public class GameManager : MonoBehaviour
     {
         lifes = Mathf.Clamp(--lifes, 0, 5);
         scoreMarker.DestroyLife(lifes);
+        playerController.ActivatePowerUp(PowerUpType.None); 
         playerController.ResetPlayer();
 
         PowerUp powerUp = FindObjectOfType<PowerUp>();
