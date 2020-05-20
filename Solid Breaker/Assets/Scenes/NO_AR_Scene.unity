@@ -367,6 +367,7 @@ MonoBehaviour:
   lifes: 5
   score: 0
   initRound: 1
+  targetDetected: 0
 --- !u!4 &1247091857
 Transform:
   m_ObjectHideFlags: 0

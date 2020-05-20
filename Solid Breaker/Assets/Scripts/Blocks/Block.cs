@@ -13,18 +13,28 @@ public class Block : MonoBehaviour
     private MeshRenderer meshRenderer;
     private BlocksManager blocksManager;
     private GameManager gameManager;
+    [Header("Audio SFX")]
+    [SerializeField] private AudioSource m_audio;
+    public AudioClip[] hit_clips;
+
     public void BlockHit()
     {
         if (!indestructible && --hits  == 0)
         {
             StopCoroutine("HitIlumination");
             BlockDestroyed();
+            // instante sound explosion prefab
+            Instantiate(Resources.Load("BlockAudioClipExplosion"), transform.parent);
         }
         else
         {
             iluminated = true;
             StopCoroutine("HitIlumination");
             StartCoroutine("HitIlumination");
+
+            // play bounce/hit sound
+            if(m_audio)
+                m_audio.PlayOneShot(hit_clips[Random.Range(0, hit_clips.Length)]);
         }
     }
     IEnumerator HitIlumination()
@@ -86,6 +96,8 @@ public class Block : MonoBehaviour
         meshRenderer = GetComponent<MeshRenderer>();
         meshRenderer.material.EnableKeyword("_EMISSION");
         originalColor = meshRenderer.material.GetColor("_EmissionColor");
+
+        m_audio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame

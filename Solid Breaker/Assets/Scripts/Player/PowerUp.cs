@@ -18,7 +18,7 @@ public class PowerUp : MonoBehaviour
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
-;        radius = GetComponent<CapsuleCollider>().radius;
+        radius = GetComponent<CapsuleCollider>().radius;
         width = GetComponent<CapsuleCollider>().height;
     }
 
