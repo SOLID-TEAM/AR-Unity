@@ -16,6 +16,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool started_round = false;
     [SerializeField] private bool player_ready = false;
     GameManager gameManager;
+    [Header("Audio SFX")]
+    [SerializeField] private AudioSource m_audio;
+    public AudioClip laser_clip;
+    public AudioClip generic_pickup_clip;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +28,9 @@ public class PlayerController : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
         active_powerup = PowerUpType.None;
         default_localScale = transform.localScale;
+
+        // get audio source
+        m_audio = GetComponent<AudioSource>();
 
         // prepare first round
         Invoke("ResetPlayer", 1f);
@@ -146,6 +154,9 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Instantiate(Resources.Load("projectile01"), transform.position + transform.forward * 0.5f, Quaternion.identity);
+
+            // play laser shot
+            m_audio.PlayOneShot(laser_clip);
         }
     }
 
@@ -205,7 +216,6 @@ public class PlayerController : MonoBehaviour
                             }
 
                         }
-
                     }
                     else
                     {
@@ -220,7 +230,8 @@ public class PlayerController : MonoBehaviour
                 }
         }
 
-        Debug.Log("basersf");
+        // play generic pickup clip
+        m_audio.PlayOneShot(generic_pickup_clip);
     }
 
 }
